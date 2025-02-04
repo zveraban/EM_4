@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     command: >
         sh -c "python manage.py migrate &&
+              python manage.py populate_db &&
              gunicorn drfdog.wsgi:application --bind 0.0.0.0:8000 "
 
 
@@ -35,7 +36,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: dog_db
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
