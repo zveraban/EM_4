@@ -4,9 +4,21 @@ from dog_api.models import Breed, Dog
 import random
 
 class Command(BaseCommand):
+    """
+    Django management-команда для заполнения базы данных случайными данными
+    для моделей Breed (порода) и Dog (собака) с использованием библиотеки Faker.
+    """
     help = 'Populates the database with random data'
 
     def handle(self, *args, **kwargs):
+        """
+        Основной метод, который выполняет команду.
+        - Удаляет все существующие записи из таблиц Breed и Dog.
+        - Создает предопределенные породы с случайными характеристиками.
+        - Добавляет в таблицу Dog 50 случайно сгенерированных собак, привязанных к породам.
+
+        В конце выводит сообщение об успешном заполнении базы данных.
+        """
         fake = Faker()
         Faker.seed(0)  
 
